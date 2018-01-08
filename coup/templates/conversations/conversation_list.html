@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block extra-head %}
+    <script 
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <link 
+        rel="stylesheet" 
+        href="{% static 'css/conversations.css' %}"
+    >
+{% endblock %}
+{% block content %}
+   <label>Conversations</label>
+    <div class="conversations-list">
+        {% for conversation in conversation_list %}
+            <a href="{% url 'conversations:conversation-detail' conversation.pk %}" class="conversation-link"> 
+                    <button class="list">
+                        {{ conversation.subject }} 
+                    </button>
+                </a>
+        
+        {% empty %}
+            <p>No conversations to show</p>
+        {% endfor %}
+    </div>
+    <br>
+    <a href="{% url 'conversations:conversation-create' %}"><button>New Conversation</button> </a>
+{% endblock %}

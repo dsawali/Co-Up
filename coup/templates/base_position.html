@@ -1,0 +1,84 @@
+{% extends "base_generic.html" %}
+{% block extra-head %}
+    {% load static %}
+    <script 
+        src="{% static 'javascript/map.js' %}">
+    </script>
+    <link rel="stylesheet"
+          href="{% static 'css/tabs.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% block header %}
+    {% endblock %}
+    <div class="description" id="map-wrapper">
+        <form method="POST" class="form-style add">{% csrf_token %}
+            <div class="form-element">
+                <label>
+                    Location:
+                </label>
+                {{ form1.location_addr }}
+                {{ form1.location_lat }}
+                {{ form1.location_lng }}
+                <div id="map"
+                     class="form-element">
+                </div>
+                </br>
+            </div>
+            <div class="form-element">
+                <label for="{{ form1.company.id_for_label }}">
+                    Company:    
+                </label>
+                {{ form1.company }}
+            </div>
+            <div class="form-element">
+                <label for="{{ form1.title.id_for_label }}">
+                    Title:    
+                </label>
+                {{ form1.title }}
+            </div>
+            <div class="form-element">
+                <label for="{{ form1.start_year.id_for_label }}">
+                    Start year:    
+                </label>
+                {{ form1.start_year }}
+            </div>
+            <div class="form-element">
+                <label for="{{ form1.start_month.id_for_label }}">
+                    Start month:    
+                </label>
+                {{ form1.start_month }}
+            </div>
+            <div class="form-element">
+                <label for="{{ form1.end_year.id_for_label }}">
+                    End year:    
+                </label>
+                {{ form1.end_year }}
+            </div>
+            <div class="form-element">
+                <label for="{{ form1.end_month.id_for_label }}">
+                    End month:    
+                </label>
+                {{ form1.end_month }}
+            </div>
+
+            <div class="form-element">
+                <label for="{{ form2.comment.id_for_label }}">
+                    Comment:
+                </label>
+                {{ form2.comment }}
+            </li>
+
+            <button type="submit">Save</button>
+        </form>
+        
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script async defer  
+            src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB3Pjx_vFyh3jMkC19LlLpK-5mZlJoXDa8&callback=initMap">
+    </script>
+{% endblock %}
+

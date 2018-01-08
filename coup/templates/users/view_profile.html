@@ -1,0 +1,147 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+    <h2 id="profile-header">
+        {% if request.user.slug == object.slug %}
+            Your Profile
+        {% else %}
+            {{ object.username }}'s Profile 
+        {% endif %}
+    </h2>
+
+        {% if request.user.slug == object.slug %}
+            <a  class="profile-link header-link"
+                href="{% url 'users:update_profile' object.slug %}">
+                Update
+            </a>
+        {% else %}
+            {% with total_followers=user.followers.count %}
+            <span class="count profile-link header-link">
+                <span class="total">{{ total_followers }}</span>
+                Follower{{ total_followers|pluralize }}
+            </span>
+            <a href="{% url 'user_follow' %}"
+               data-id="{{ user.id }}"
+               data-action="{% if request.user in user.followers.all %}un{% endif %}follow"
+               class="profile-link header-link follow button">
+                {% if request.user not in user.followers.all %}
+                    Follow
+                {% else %}
+                    Unfollow
+                {% endif %}
+            </a>
+            {% endwith %}
+            <a  class="profile-link header-link"
+                href="{% url 'conversations:group-create' %}">
+                Message
+            </a>
+        {% endif %}
+
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+
+        <div class="description">
+            <ul class="description-details">
+                <li class="detail profile-picture">
+                    <img
+                        src="{{ object.picture.url }}"
+                        height="100"
+                        width="100">
+                </li>
+                <li class="detail username">
+                    <label>
+                        Username:
+                    </label>
+                    {{ object.username }}
+                </li>
+                <li class="detail firstname">
+                    <label>
+                        First name:
+                    </label>
+                    {{ object.first_name }}
+                </li>
+                <li class="detail last_name">
+                    <label>
+                        Last name:
+                    </label>
+                    {{ object.last_name }}
+                </li>
+                <li class="detail program">
+                    <label>
+                        Program:
+                    </label>
+                    {{ object.program }}
+                </li>
+                <li class="detail faculty">
+                    <label>
+                        Faculty:
+                    </label>
+                    {{ object.faculty }}
+                </li>
+            </ul>
+        </div>
+
+    <h2 id="profile-header">
+        {% if request.user.slug == object.slug %}
+            Your Positions
+        {% else %}
+            {{ object.first_name }}'s Positions
+        {% endif %}
+    </h2>
+
+        {% if request.user.slug == object.slug %}
+            <a  class="profile-link header-link" 
+                href="{% url 'positions:add-position' %}">
+                Add Position 
+            </a>
+            <a  class="profile-link header-link"
+                href="{% url 'positions:index' %}">
+                Find Positions
+            </a>
+        {% endif %}
+
+        {% for item in object.comment_set.all %}
+            <div class="description">
+                <ul class="description-details">
+                    <li class="detail company">
+                        <label>
+                            Company:
+                        </label>
+                        {{ item.position.company }}
+                    </li>
+                    <li class="detail title">
+                        <label>
+                            Title:
+                        </label>
+                        {{ item.position.title }}
+                    </li>
+                    <li class="detail during">
+                        <label>
+                            During:
+                        </label>
+                        {{ item.position.start_month }} {{ item.position.start_year }}
+                        - {{ item.position.end_month }} {{item.position.end_year }}
+                    </li>
+                    <li class="detail comment">
+                        <label>
+                            Description:
+                        </label>
+                        <div class="comment">
+                            {{ item.comment }}
+                        </div>
+                    </li>
+                    <li class="detail position-links">
+                        <a id="update-position" class="profile-link"
+                           href="{{ item.position.get_absolute_url }}">
+                            View
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        {% endfor %}
+
+{% endblock %}
+
+

@@ -1,0 +1,66 @@
+{
+    "Faculty of Applied Sciences ": [
+        "Computing Science",
+        "Engineering Science",
+        "Mechatronic Systems Engineering"
+    ],
+    "Faculty of Arts and Social Sciences": [
+        "Anthropology",
+        "Asia-Canada",
+        "Cognitive Science",
+        "Criminology",
+        "Economics",
+        "English",
+        "First Nations Studies",
+        "French Cohort",
+        "French",
+        "Gender, Sexuality, and Women's Studies",
+        "Gerontology",
+        "Graduate Liberal Studies",
+        "Hellenic Studies",
+        "History",
+        "Humanities",
+        "International Studies",
+        "Labour Studies",
+        "Language Training",
+        "Latin American Studies",
+        "Linguistics",
+        "Philosophy",
+        "Political Science",
+        "Psychology",
+        "Public Policy",
+        "Sociology",
+        "Urban Studies",
+        "World Literature"
+    ],
+    "Beedie School of Business": [],
+    "Faculty of Communication, Art and Technology": [
+        "Communication",
+        "Contemporary Arts",
+        "Interactive Arts and Technology",
+        "Publishing"
+    ],
+    "Faculty of Education": [],
+    "Faculty of Environment ": [
+        "Archaeology",
+        "Sustainable Community Development",
+        "Environmental Science",
+        "Geography",
+        "Resource and Environmental Management",
+        "Environment",
+        "Heritage Resource Management",
+        "Resource and Environmental Planning"
+    ],
+    "Faculty of Health Sciences ": [],
+    "Faculty of Science": [
+        "Actuarial Science and Statistics",
+        "Biological Sciences",
+        "Biomedical Physiology and Kinesiology",
+        "Chemistry",
+        "Earth Sciences",
+        "Mathematics",
+        "Molecular Biology and Biochemistry",
+        "Physics",
+        "Statistics and Actuarial Science"
+    ]
+}

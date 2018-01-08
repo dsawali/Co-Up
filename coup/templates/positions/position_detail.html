@@ -1,0 +1,92 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<h2 id="profile-header">
+Position Details
+</h2>
+
+{% if request.user == position.user %}
+    <a class="profile-link header-link"
+        href="{% url 'positions:edit-position' pk=position.pk slug=position.slug %}">
+        Update
+    </a>
+    <a class="profile-link header-link"
+        href="{% url 'positions:delete-position' pk=position.pk slug=position.slug %}">
+        Delete
+    </a>
+{% endif %}
+
+<a class="profile-link header-link"
+    href="{% url 'positions:index' %}">
+    Back To Positions
+</a>
+
+<div class="description">
+    <ul class="description-details">
+        <li class="detail">
+            <label>
+                User:
+            </label>
+            <a href="{{ position.user.get_absolute_url }}">
+                {{ position.user.username }}
+            </a>
+        </li>
+        <li class="detail">
+            <label>
+                Company:
+            </label>
+            {{ position.company }}
+        </li>
+        <li class="detail">
+            <label>
+                Title:
+            </label>
+            {{ position.title }}
+        </li>
+        {% if position.location_addr %}
+            <li class="detail">
+                <label>
+                    Location:
+                </label>
+                {{ position.location_addr }}
+            </li>
+        {% endif %}
+        {% if position.start_year %}
+            <li class="detail">
+                <label>
+                    Start Date:
+                </label>
+                {% if position.start_month %}
+                    {{ position.start_month }} {{ position.start_year }}
+                {% else %}
+                    {{ position.start_year }}
+                {% endif %}
+            </li>
+        {% endif %}
+        {% if position.end_year %}
+            <li class="detail">
+                <label>
+                    End Date:
+                </label>
+                {% if position.end_month %}
+                    {{ position.end_month }} {{ position.end_year }}
+                {% else %}
+                    {{ position.end_year }}
+                {% endif %}
+            </li>
+        {% endif %}
+        {% if position.comment_set.get.comment %}
+            <li class="detail">
+                <label>
+                    Description:
+                </label>
+                <div class="comment">
+                    {{ position.comment_set.get.comment }}
+                </div>
+            </li>
+        {% endif %}
+    </ul> 
+</div>
+
+{% endblock %}

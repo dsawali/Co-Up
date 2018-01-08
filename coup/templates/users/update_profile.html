@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+  <h2>Update Profile</h2>
+  <form id="update" 
+        action=""
+        enctype="multipart/form-data" 
+        method="post">
+    {% csrf_token %}
+    <div class="description">
+        <ul class="description-details">
+        {% for field in form %}
+            <li class="detail">
+                <label>
+                    {{ field.label_tag }}
+                </label>
+                {{ field }}
+            </li>
+            {% for error in field.errors %}
+              <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+        <input type="submit" value="update" />
+        </ul>
+    </div>
+  </form>
+{% endblock %}

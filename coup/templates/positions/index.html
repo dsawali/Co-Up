@@ -1,0 +1,148 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2 id="profile-header">
+        Your Positions
+    </h2>
+
+        <a class="profile-link header-link" 
+            href="{% url 'positions:add-position' %}">
+            Add New Position
+        </a>
+        <a  class="profile-link header-link" 
+            href="{% url 'search:searchView' %}">
+            Find Position
+        </a>
+
+        {% if request.user.is_authenticated %}
+        <div class="description"> 
+            <ul class="description-details">
+            {% if position_list %}
+                {% for position in position_list %}
+                    <li class="detail position">
+                        <a href="{{ position.get_absolute_url }}">
+                            {{ position.title }} @ {{ position.company }}
+                        </a>
+                    </li>
+                {% endfor %}
+              </ul>
+
+            {% else %}
+                <li class="detail position">
+                    <p>You currently have no added positions.</p>
+                </li>
+            {% endif %}
+        </div>
+        {% endif %}
+
+    {% if recommended_list %}
+    <h2 id="profile-header">
+        Recommended
+    </h2>
+    {% endif %}
+        {% for rec in recommended_list %}
+            <div class="description">
+                <ul class="description-details">
+                    <li class="detail user">
+                        <label>
+                            User:
+                        </label>
+                        <a href="{% url 'users:view_profile' rec.user.slug %}">
+                            {{ rec.user }}
+                        </a>
+                    </li>
+                    <li class="detail company">
+                        <label>
+                            Company:
+                        </label>
+                        {{ rec.company }}     
+                    </li>
+                    <li class="detail title">
+                        <label>
+                            Title:
+                        </label>
+                        {{ rec.title }}
+                    </li>
+                    <li class="detail during">
+                        <label>
+                            During:
+                        </label>
+                        {{ rec.start_month }} {{ rec.start_year }}
+                        {% if recent.end_year %}
+                            - {{ recent.end_month }} {{ recent.end_year }}
+                        {% endif %}
+                    </li>
+                    <li class="detail comment">
+                        <label>
+                            Description:
+                        </label>
+                        <div class="comment">
+                            {{ rec.comment_set.get.comment }}
+                        </div>
+                    </li>
+                    <li class="detail position-links">
+                        <a id="update-position" class="profile-link"
+                           href="{{ rec.get_absolute_url }}">
+                            View
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        {% endfor %}
+  
+    
+    <h2 id="profile-header">
+        Recently Added
+    </h2>
+
+        {% for recent in recent_list %}
+            <div class="description">
+                <ul class="description-details">
+                    <li class="detail user">
+                        <label>
+                            User:
+                        </label>
+                        <a href="{% url 'users:view_profile' recent.user.slug %}">
+                            {{ recent.user }}
+                        </a>
+                    </li>
+                    <li class="detail company">
+                        <label>
+                            Company:
+                        </label>
+                        {{ recent.company }}     
+                    </li>
+                    <li class="detail title">
+                        <label>
+                            Title:
+                        </label>
+                        {{ recent.title }}
+                    </li>
+                    <li class="detail during">
+                        <label>
+                            During:
+                        </label>
+                        {{ recent.start_month }} {{ recent.start_year }}
+                        {% if recent.end_year %}
+                            - {{ recent.end_month }} {{ recent.end_year }}
+                        {% endif %}
+                    </li>
+                    <li class="detail comment">
+                        <label>
+                            Description:
+                        </label>
+                        <div class="comment">
+                            {{ recent.comment_set.get.comment }}
+                        </div>
+                    </li>
+                    <li class="detail position-links">
+                        <a id="update-position" class="profile-link"
+                           href="{{ recent.get_absolute_url }}">
+                            View
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        {% endfor %}
+                    
+{% endblock %}

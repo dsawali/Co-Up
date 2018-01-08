@@ -1,0 +1,117 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$36000$jC0wfULzHxCe$k86IyAT0/m931XuXS9PsLr2Cs0zd8PgNmfSnJQKfA1g=",
+    "last_login": "2017-12-05T03:46:53.790Z",
+    "is_superuser": false,
+    "username": "dsawali",
+    "first_name": "Davis",
+    "last_name": "Sawali",
+    "email": "dsawali@sfu.ca",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-12-05T03:43:41.379Z",
+    "faculty": "Sciences",
+    "program": "Computing Science",
+    "bio": "Hi, my name is Davis Sawali. Nice to meet you!",
+    "picture": "profile_pictures/default.png",
+    "slug": "dsawali",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$36000$gen89keKl7Bk$9q2YL68O9gi/wB+QZCyVMXToixI0BTRCyLLp3mb2rMA=",
+    "last_login": "2017-12-05T04:16:04.102Z",
+    "is_superuser": false,
+    "username": "pzhou",
+    "first_name": "Peter",
+    "last_name": "Zhou",
+    "email": "pzhou@sfu.ca",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-12-05T03:44:51.406Z",
+    "faculty": "Applied Sciences",
+    "program": "Computing Science",
+    "bio": "",
+    "picture": "profile_pictures/default.png",
+    "slug": "pzhou",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$36000$G5wl0tAsGRu7$hjCAoAAlup4Tn3XaIhGUZ1yXtj2H92A2Jzitt4nB6KY=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "jvsingh",
+    "first_name": "",
+    "last_name": "",
+    "email": "jvsingh@sfu.ca",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-12-05T03:45:47.067Z",
+    "faculty": "",
+    "program": "",
+    "bio": null,
+    "picture": "profile_pictures/default.png",
+    "slug": "jvsingh",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$36000$SSuXOiYqtMVv$pW2VAcQ+VzrQufPsWsUWLFSq0RSStHYr+TWliOQLPCk=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "sbeaudoi",
+    "first_name": "",
+    "last_name": "",
+    "email": "sbeaudoi@sfu.ca",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-12-05T03:46:15.957Z",
+    "faculty": "",
+    "program": "",
+    "bio": null,
+    "picture": "profile_pictures/default.png",
+    "slug": "sbeaudoi",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$36000$3L9vaUqC4JS9$vwGS9yihCmKYM2r03GsIn8aGwkHwUHVObKPZw993Yz4=",
+    "last_login": "2017-12-05T04:18:00.418Z",
+    "is_superuser": false,
+    "username": "dchan",
+    "first_name": "Daniel",
+    "last_name": "Chan",
+    "email": "dchan@sfu.ca",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-12-05T03:46:45.542Z",
+    "faculty": "Education",
+    "program": "Earth Sciences",
+    "bio": "I like to teach",
+    "picture": "profile_pictures/default.png",
+    "slug": "dchan",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

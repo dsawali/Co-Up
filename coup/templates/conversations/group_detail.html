@@ -1,0 +1,65 @@
+{% extends "base_generic.html" %}
+{% block content %}
+{% load static %}
+{% block extra-head %}
+    <script 
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <link 
+        rel="stylesheet" 
+        href="{% static 'css/conversations.css' %}"
+    >
+{% endblock %}
+    <h2 id="profile-header">
+        {{ group.name }}
+    </h2>
+    <a class="profile-link header-link"
+        href="{% url 'conversations:group-list' %}">
+        Back to Groups
+    </a>
+    <a class="profile-link header-link"
+        href="{% url 'conversations:conversation-create' %}">
+        Start a Conversation
+    </a>
+    
+    <div class="description">
+        <ul class="description-details">
+            <li class="detail">
+                <label>
+                    Subject:
+                </label>
+                {{ group.subject }}
+            </li>
+            <li class="detail">
+                <label>
+                    Description:
+                </label>
+                {{ group.description }}
+            </li>
+            <li class="detail">
+                <label>
+                    Users:
+                </label>
+                {% for user in group.users.all %}
+                    <div>
+                        {{ user.username }}
+                    </div>
+                {% empty %}
+                    <p>No users to show</p>
+                {% endfor %}
+            </li>
+            <br>
+            <li class="detail">
+                <a href="{% url 'conversations:group-update' group.pk %}"
+                    class="profile-link"
+                    id="update-position">
+                    Edit Group 
+                </a>
+                <a href="{% url 'conversations:group-delete' group.pk %}"
+                    class="profile-link">
+                    Delete Group
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block extra-head %}
+    <script 
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <link 
+        rel="stylesheet" 
+        href="{% static 'css/conversations.css' %}">
+    <script 
+        src="{% static 'javascript/conversations.js' %}">
+    </script>    
+{% endblock %}
+{% block content %}
+    <div class="wrapper">
+        <h2>Messaging Overview</h2>
+        <div class="description">
+        <div class="left">
+            <label>Groups</label>
+            <button class="up-group" data-group-url="{% url 'conversations:group-list-ajax' %}">&#9650;</button>
+            <ul class="groups-list" data-url="{% url 'conversations:conversation-list-ajax' %}">
+                {% for group in groups_list %}
+                    <li>
+                    <a href="#" class="group-link">
+                        <button class="group-name" data-id="{{group.pk}}">{{ group.name }}</button>
+                    </a>
+                    </li>
+        
+                {% empty %}
+                    <p>No groups to show</p>
+                {% endfor %}
+            </ul>
+            <button class="down-group" data-group-url="{% url 'conversations:group-list-ajax' %}">&#9660;</button>
+            <br>
+            <a class="message-link"
+                href="{% url 'conversations:group-create' %}">
+                New Group
+            </a>
+            <a class="message-link"
+                href="{% url 'conversations:group-list' %}">
+                Edit Groups
+            </a>
+            <br><br>
+            <label>Conversations</label>
+            <button class="up-conv" data-conv-url="{% url 'conversations:conversation-list-ajax' %}">&#9650;</button>
+            <div class="conversations-block">
+                <ul class="conversations-list" data-url="{% url 'conversations:message-list-ajax' %}">
+                    {% for conversation in conversations_list %}
+                        <li>
+                        <a href="#" class="conversation-link">
+                            <button class="conversation-name" data-id="{{conversation.pk}}">{{ conversation.subject }}</button>
+                        </a>
+                        </li>
+                    {% empty %}
+                        <p>No conversations to show</p>
+                    {% endfor %}
+                </ul>
+            </div>
+            <button class="down-conv" data-conv-url="{% url 'conversations:conversation-list-ajax' %}">&#9660;</button>
+            <br>
+            <a class="message-link"
+                href="{% url 'conversations:conversation-create' %}">
+                New Conversation
+            </a>
+            <a class="message-link"
+                href="{% url 'conversations:conversation-list' %}">
+                Edit Conversations
+            </a>
+        </div>
+    
+        <div class="right">
+            <label>Messages</label>
+            <div class="messages-block"> 
+                <ul class="messages-list">
+                    <li> Click on a group and a message </li>            
+                </ul>
+        
+            </div>
+            <br>
+            <textarea name="message-box" class="msg-box" data-msg="{% url 'conversations:message-create-ajax' %}"></textarea>
+            <button type="submit" value="submit" class="btn-send">Send</button>
+        </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br>
+
+    
+{% endblock %}

@@ -1,0 +1,18 @@
+{% block content %}
+{% load static %}
+{% block extra-head %}
+    <script 
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <link 
+        rel="stylesheet" 
+        href="{% static 'css/conversations_form.css' %}"
+    >
+{% endblock %}
+    <form action="" method="post">{% csrf_token %}
+        <div class="delete-confirmation">
+            <p>Are you sure you want to delete "{{ object }}"?</p>
+            <button type="submit" class="confirm">Confirm </button>
+        </div>
+    </form>
+{% endblock %}

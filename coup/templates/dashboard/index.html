@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+      <div class="col-lg-6 col-sm-offset-3 text-center" >
+        </div>
+  </div>
+  <div class="row">
+      <div class="col-lg-6 col-sm-offset-3">
+        {% if recommend_users %}
+        <h2>Recommended Users</h2>
+          {% for user in recommend_users %}
+          <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+          {% endfor %}
+
+          {% else %}
+          <h3>No Recommendations :(</h3>
+          {% endif %}
+
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-lg-6 col-sm-offset-3">
+          {% if recent_list %}
+          <h2>Recent Listings</h2>
+            {% for position in recent_list %}
+            <a href="{{ position.get_absolute_url }}"><h3>{{ position.title }} @
+              {{ position.company }}</h3></a>
+              <p>Comments: {{ position.comment_set.get.comment }}</p>
+              <p>posted by {{ position.user }}</p>
+            {% endfor %}
+
+          {% else %}
+          <h2>List is Empty</h2>
+          {% endif %}
+        </div>
+  </div>
+</div>
+{% endblock %}

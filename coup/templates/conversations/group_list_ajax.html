@@ -1,0 +1,14 @@
+{% block content %}
+    <ul class="groups-list" data-url="{% url 'conversations:conversation-list-ajax' %}">
+        {% for group in groups_list %}
+        <li>
+            <a href="#" class="group-link">
+                <button class="group-name" data-id="{{group.pk}}">{{ group.name }}</button>
+            </a>
+        </li>
+        
+        {% empty %}
+            <p class="stop">No groups to show</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+        href="https://fonts.googleapis.com/css?family=Merienda+One"
+        rel="stylesheet"
+    >
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    >
+    <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"        >
+    <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    >
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+    <link
+        href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"
+        rel="Stylesheet">
+    </link>
+    <script
+        src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" >
+    </script>
+    <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+    {% load static %}
+    <script
+        src="{% static 'javascript/application.js' %}">
+    </script>
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+    <link
+        rel="stylesheet"
+        href="{% static 'css/forms.css' %}"
+    >
+</head>
+
+<body>
+      <nav class="navbar navbar-default navbar-expand-xl navbar-light">
+          <div class="navbar-header d-flex col">
+              <a class="navbar-brand" href="#">
+                  <i class="fa fa-cube"></i>CO_OP_<b>US</b>
+              </a>
+          </div>
+      </nav>
+
+
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+[
+{
+  "model": "positions.position",
+  "pk": 1,
+  "fields": {
+    "company": "Microsoft",
+    "title": "Software Developer",
+    "start_year": "2016",
+    "start_month": "January",
+    "end_year": "2016",
+    "end_month": "August",
+    "location_lat": 49.2769237,
+    "location_lng": -123.1147555,
+    "location_addr": " Beatty Street, Vancouver, BC, Canada",
+    "user": 1,
+    "slug": "software-developer-microsoft"
+  }
+},
+{
+  "model": "positions.position",
+  "pk": 2,
+  "fields": {
+    "company": "PBES",
+    "title": "Software Developer",
+    "start_year": "2016",
+    "start_month": "May",
+    "end_year": "2016",
+    "end_month": "December",
+    "location_lat": 49.2780937,
+    "location_lng": -122.9198833,
+    "location_addr": "SFU, Burnaby, BC, Canada",
+    "user": 2,
+    "slug": "software-developer-pbes"
+  }
+},
+{
+  "model": "positions.position",
+  "pk": 3,
+  "fields": {
+    "company": "Simon Fraser University",
+    "title": "Teaching Assistant",
+    "start_year": "2017",
+    "start_month": "January",
+    "end_year": "2017",
+    "end_month": "May",
+    "location_lat": null,
+    "location_lng": null,
+    "location_addr": null,
+    "user": 5,
+    "slug": "teaching-assistant-simon-fraser-university"
+  }
+},
+{
+  "model": "positions.comment",
+  "pk": 1,
+  "fields": {
+    "created": "2017-12-05T04:14:45.013Z",
+    "modified": "2017-12-05T04:14:45.013Z",
+    "comment": "It was a great learning experience!",
+    "position": 1,
+    "user": 1
+  }
+},
+{
+  "model": "positions.comment",
+  "pk": 2,
+  "fields": {
+    "created": "2017-12-05T04:17:20.592Z",
+    "modified": "2017-12-05T04:17:20.592Z",
+    "comment": "",
+    "position": 2,
+    "user": 2
+  }
+},
+{
+  "model": "positions.comment",
+  "pk": 3,
+  "fields": {
+    "created": "2017-12-05T04:24:16.968Z",
+    "modified": "2017-12-05T04:24:16.968Z",
+    "comment": "",
+    "position": 3,
+    "user": 5
+  }
+}
+]

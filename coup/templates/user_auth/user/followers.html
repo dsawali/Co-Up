@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<h1 style="
+    margin-left: 20px;
+    padding-bottom: 10px;
+    border-bottom: thin solid gray;
+">Followers</h1>
+<br>
+<div id="followers-list">
+    <form action="{% url 'search:searchView' %}" method="GET">
+        <input type="text"
+               name="username"
+               placeholder="Search for users..."
+               class="form-control"
+               style="width: 20%;
+                      margin-right: 3%;
+                      float: right;">
+        <ul class="list-group">
+            {% for user in user.followers.all %}
+            <li>
+                <a
+                    href="{% url 'users:view_profile' user.username %}"
+                    class="title list-group-item"
+                    title="{{ user.username }}">
+                        <img src="{{ user.picture.url }}"
+                             width="100px"
+                             height="100px"
+                             style="float: right;
+                                    border-radius: 50%;
+                                    margin-top: -10px;">
+                        Username: {{ user.username|default:"N/A" }} <br>
+                        First Name: {{ user.first_name|default:"N/A" }} <br>
+                        Last Name: {{ user.last_name|default:"N/A" }} <br>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+</div>
+{% endblock %}

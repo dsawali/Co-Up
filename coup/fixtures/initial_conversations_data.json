@@ -1,0 +1,96 @@
+[
+{
+  "model": "conversations.group",
+  "pk": 1,
+  "fields": {
+    "created": "2017-12-05T03:50:27.916Z",
+    "modified": "2017-12-05T03:50:27.916Z",
+    "name": "FAS 2018",
+    "subject": "Seeking",
+    "description": "Group for Co-op seeking group of 2018",
+    "locked": false,
+    "users": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "conversations.group",
+  "pk": 2,
+  "fields": {
+    "created": "2017-12-05T04:04:44.718Z",
+    "modified": "2017-12-05T04:04:44.718Z",
+    "name": "Microsoft Developers",
+    "subject": "Requirements discussion",
+    "description": "Group to discuss how to get a job at Microsoft",
+    "locked": false,
+    "users": [
+      1,
+      2,
+      4
+    ]
+  }
+},
+{
+  "model": "conversations.conversation",
+  "pk": 1,
+  "fields": {
+    "created": "2017-12-05T03:50:44.223Z",
+    "modified": "2017-12-05T03:50:44.223Z",
+    "group": 1,
+    "subject": "General"
+  }
+},
+{
+  "model": "conversations.conversation",
+  "pk": 2,
+  "fields": {
+    "created": "2017-12-05T03:51:27.235Z",
+    "modified": "2017-12-05T03:51:27.235Z",
+    "group": 1,
+    "subject": "Random"
+  }
+},
+{
+  "model": "conversations.conversation",
+  "pk": 3,
+  "fields": {
+    "created": "2017-12-05T03:52:26.054Z",
+    "modified": "2017-12-05T03:52:26.054Z",
+    "group": 1,
+    "subject": "Memes"
+  }
+},
+{
+  "model": "conversations.conversation",
+  "pk": 4,
+  "fields": {
+    "created": "2017-12-05T03:53:04.983Z",
+    "modified": "2017-12-05T03:53:04.983Z",
+    "group": 1,
+    "subject": "Amazon Devs"
+  }
+},
+{
+  "model": "conversations.conversation",
+  "pk": 5,
+  "fields": {
+    "created": "2017-12-05T03:55:36.944Z",
+    "modified": "2017-12-05T03:55:36.944Z",
+    "group": 1,
+    "subject": "Conversation 1"
+  }
+},
+{
+  "model": "conversations.conversation",
+  "pk": 6,
+  "fields": {
+    "created": "2017-12-05T04:05:05.639Z",
+    "modified": "2017-12-05T04:05:05.639Z",
+    "group": 1,
+    "subject": "Conversation 2"
+  }
+}
+]

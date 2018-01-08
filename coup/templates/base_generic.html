@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!-- Adapted from https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=all-in-one-navbar -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block title %}<title>Co-op Us</title> {% endblock %}
+        <link
+            href="https://fonts.googleapis.com/css?family=Merienda+One"
+            rel="stylesheet"
+        >
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        >
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"        >
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        >
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
+        </script>
+        <script
+            src=" http://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js ">
+        </script>
+        <link
+            href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"
+            rel="Stylesheet">
+        </link>
+        <script
+            src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" >
+        </script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+        </script>
+        {% load static %}
+        <script
+            src="{% static 'javascript/application.js' %}">
+        </script>
+        <link
+            rel="stylesheet"
+            href="{% static 'css/style.css' %}"
+        >
+        {% block extra-head %}
+            {# you can add any page-specific additional headers here #}
+        {% endblock %}
+    </head>
+    <body>
+      {% if request.user.is_authenticated %}
+        <nav class="navbar navbar-default navbar-expand-xl navbar-light" data-spy="affix" data-offset-top="197">
+            <div class="navbar-header d-flex col">
+                <a class="navbar-brand" href="#">
+                    <i class="fa fa-cube"></i>CO_OP_<b>US</b>
+                </a>
+                <button
+                    type="button"
+                    data-target="#navbarCollapse"
+                    data-toggle="collapse"
+                    class="navbar-toggle navbar-toggler ml-auto">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+                    <!-- Collection of nav links, forms, and other content for toggling -->
+            <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item active">
+                        <a href="{% url 'dashboard:DashBoardView' %}" class="nav-link">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ request.user.get_absolute_url }}" class="nav-link">
+                            Profile
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="{% url 'conversations:conversation-initial'%}" 
+                            class="nav-link dropdown-toggle"
+                            data-toggle="dropdown">
+                            Messages
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{% url 'conversations:conversation-initial' %}"
+                                   class="dropdown-item">
+                                    <i></i>
+                                    Overview
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'conversations:conversation-list' %}"
+                                   class="dropdown-item">
+                                    <i></i>
+                                    Conversations
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'conversations:group-list' %}"
+                                   class="dropdown-item">
+                                    <i></i>
+                                    Groups 
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'positions:index' %}"
+                            data-toggle="dropdown"
+                             class="nav-link dropdown-toggle">
+                            Positions
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{% url 'positions:index' %}"
+                                   class="dropdown-item">
+                                    <i></i>
+                                    Overview
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'positions:add-position' %}"
+                                   class="dropdown-item">
+                                    <i></i>
+                                    Add New Position
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="{% url 'user_list_followers' %}" data-toggle="dropdown"
+                        class="nav-link dropdown-toggle ">People</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{% url 'user_list_followers' %}" class="dropdown-item">
+                                    <i></i>
+                                     Following You
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'user_list_following' %}" class="dropdown-item">
+                                    <i></i>
+                                     Followed by You
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            href="{% url 'search:searchView' %}"
+                            class="nav-link" >
+                            Search
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right ml-auto">
+                    <li class="nav-item dropdown">
+                        <a href="#"
+                            data-toggle="dropdown"
+                            class="nav-link dropdown-toggle user-action">
+                            <img
+                                src="{{ request.user.picture.url }}"
+                                class="avatar" alt="Avatar">
+                            {{ request.user.username}}
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ request.user.get_absolute_url }}" class="dropdown-item">
+                                    <i class="fa fa-user-o"></i>
+                                     Profile
+                                </a>
+                            </li>
+                            <li class="divider dropdown-divider">
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}" class="dropdown-item">
+                                    <i class="material-icons">&#xE8AC;</i>
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div>
+          {% block content %}{% endblock %}
+        </div>
+        {% block javascript %}{% endblock %}
+        <!--
+        Below is the JS code to perform the AJAX request
+        to follow and unfollow a particular user
+        -->
+        <script>
+            var csrftoken = $.cookie('csrftoken');
+            function csrfSafeMethod(method) {
+                // these HTTP methods do not require CSRF protection
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+            $('a.follow').click(function(e){
+                e.preventDefault();
+                $.post('{% url "user_follow" %}',
+                {
+                    id: $(this).data('id'),
+                    action: $(this).data('action')
+                },
+                function(data){
+                    if (data['status'] == 'ok')
+                    {
+                        var previous_action = $('a.follow').data('action');
+
+                        // toggle data-action
+                        $('a.follow').data('action', previous_action == 'follow' ? 'unfollow' : 'follow');
+                        // toggle link text
+                        $('a.follow').text(previous_action == 'follow' ? 'Unfollow' : 'Follow');
+
+                        // update total followers
+                        var previous_followers = parseInt($('span.count .total').text());
+                        $('span.count .total').text(previous_action == 'follow' ? previous_followers + 1 : previous_followers - 1);
+                    }
+                });
+            });
+            if ($("#users-in-following-list").children().length === 0) {
+                                $("#users-in-following-list").append('<h3 style="margin-left: 20px;">Sorry you are not following anyone yet...</h3>')
+            }
+        </script>
+{% else %}
+    <h1><a href="{% url "login" %}">Log-in</a></h1>
+{% endif %}
+</body>
+</html>

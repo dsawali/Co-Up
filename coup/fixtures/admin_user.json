@@ -1,0 +1,23 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$36000$BhAlkFGw9Ekk$1AzNS+kFTZDWqP57Phvzj7IaBPAi4GnAaUmibY2WCRA=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@example.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2017-11-26T09:20:01.135Z",
+    "faculty": "",
+    "program": "",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

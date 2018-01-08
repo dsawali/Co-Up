@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+{% block content %}
+{% load static %}
+{% block extra-head %}
+    <script 
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <link 
+        rel="stylesheet" 
+        href="{% static 'css/conversations.css' %}"
+    >
+{% endblock %}
+    <h1>Groups</h1>
+    <ul>
+    {% for group in group_list %}
+        <li>
+            <a href="{% url 'conversations:group-detail' group.pk %}" class="group-link">
+            <button class="list">
+                {{ group.name }} : {{ group.subject }}
+            </button>
+            </a>
+        </li>
+    {% empty %}
+        <p>No groups to show</p>
+    {% endfor %}
+    </ul>
+    <br>
+    <a href="{% url 'conversations:group-create' %}"> <button>New Group</a></button>
+{% endblock %}

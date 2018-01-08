@@ -1,0 +1,95 @@
+div .tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+}
+
+div.tab button {
+    background-color: inherit;
+    color: #777;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+div.tab button:hover {
+    background-color: #ececec;
+}
+
+div.tab button.active {
+    color: #555;
+    background-color: #e7e7e7;
+}
+
+.tab-content {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    margin-bottom: 1em;
+}
+div #positions.tab-content {
+    display: block;
+}
+
+div #faculty.tab-content{
+
+}
+
+label {
+    width: 100px;
+}
+
+input {
+    outline: none;
+}
+
+select {
+    outline: none;
+    width: 15%;
+}
+
+/* forms */
+
+input[type=submit] {
+    font-weight:normal;
+    margin-top: 20px;
+    background: #8a183e;
+    color:#fff;
+    padding:10px 20px;
+    font-size:14px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #fff;
+    margin: 1em 0;
+    padding: 0; 
+}
+.usernameClass {
+    border-radius: 5px;
+    display: block;
+}
+.fullnameClass {
+    border-radius: 5px;
+    display: block;
+}
+
+.titleClass {
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.facultyClass {
+    margin-top: 20px;
+}
+
+.locationClass {
+    margin-top: 20px;
+}

@@ -1,0 +1,14 @@
+{% block content %}
+    <div class="conversations-block">
+        <ul class="conversations-list" data-url="{% url 'conversations:message-list-ajax' %}">
+        {% for conversation in conversations_list %}
+        <li>
+            <a href="#" class="conversation-link">
+                <button class="conversation-name" data-id="{{conversation.pk}}"> {{ conversation.subject }} </button>
+            </a>
+        </li>
+        {% empty %}
+            <p class="stop">No conversations to show</p>
+        {% endfor %}
+        </ul>
+{% endblock %}

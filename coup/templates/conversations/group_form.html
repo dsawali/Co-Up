@@ -1,0 +1,37 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block extra-head %}
+    <link 
+        rel="stylesheet" 
+        href="{% static 'css/conversations_form.css' %}">
+{% endblock %}
+{% block content %}
+<form action="" method="post">
+    {%  csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <!--<div class="group-form-name">
+    <label for="{{ form.name.id_for_label }}"> Group name </label>
+        {{ form.name }}
+    </div>
+    <div class="group-form-subject">
+    <label for="{{ form.name.id_for_label }}"> Subject </label>
+        {{ form.subject }}
+    </div>
+    <div class="group-form-description">
+    <label for="{{ form.name.id_for_label }}"> Description </label>
+        {{ form.description }}
+    </div>
+    <div class="group-form-locked">
+    <label for="{{ form.name.id_for_label }}"> Locked </label>
+        {{ form.locked }}
+    </div>
+    <div class="group-form-users">
+    <label for="{{ form.name.id_for_label }}"> Users </label>
+        {{ form.users }}
+    </div>-->
+    <Button type="submit" value="Submit">Submit</button>
+    
+</form>
+{% endblock %}

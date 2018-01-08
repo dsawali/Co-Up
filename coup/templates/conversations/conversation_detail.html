@@ -1,0 +1,55 @@
+{% extends "base_generic.html" %}
+{% block content %}
+{% load static %}
+{% block extra-head %}
+    <link 
+        rel="stylesheet" 
+        href="{% static 'css/conversations_form.css' %}">
+{% endblock %}
+
+    <h2 id="profile-header">
+        {{ conversation.group.name }}
+    </h2>
+    <a class="profile-link header-link"
+        href="{% url 'conversations:conversation-list' %}">
+        Back To Conversations
+    </a>
+
+    <div class="description">
+        <ul class="description-details">
+            <li class="detail">
+                <label>
+                    Subject:
+                </label>
+                {{ conversation.subject }}
+            </li>
+            
+            <li class="detail">
+                <label>
+                    History:
+                </label>
+                <ul>
+                    {% for message in conversation_messages %}
+                        <li>
+                            <p>{{ message.user }}: {{ message.created }}</p>
+                            </p>{{ message.text }}</p>
+                        </li>
+                </ul>
+                {% empty %}
+                    No messages to show
+            {% endfor %}
+            <li class="detail">  
+                <a href="{% url 'conversations:conversation-update' conversation.pk %}"
+                    class="profile-link"
+                    id="update-position">
+                    Edit Conversation
+                </a>
+                <a href="{% url 'conversations:conversation-delete' conversation.pk %}"
+                    class="profile-link">
+                    Delete Conversation
+                </a>
+            </li>
+        </ul>
+    </div>
+
+{% endblock %}

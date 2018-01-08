@@ -1,0 +1,117 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2 id="profile-header">
+        Your Positions
+    </h2>
+
+        <a class="profile-link header-link" 
+            href="{% url 'positions:add-position' %}">
+            Add New Position
+        </a>
+        <a  class="profile-link header-link" 
+            href="{% url 'search:searchView' %}">
+            Find Position
+        </a>
+
+        {% if request.user.is_authenticated %}
+        {% if position_list %}
+            {% for position in object_list %}
+            <div class="description">
+                <ul class="description-details">
+                    <li class="detail">
+                        <label>
+                            User:
+                        </label>
+                        <a href="{{ position.user.get_absolute_url }}">
+                            {{ position.user.username }}
+                        </a>
+                    </li>
+                    <li class="detail">
+                        <label>
+                            Company:
+                        </label>
+                        {{ position.company }}
+                    </li>
+                    <li class="detail">
+                        <label>
+                            Title:
+                        </label>
+                        {{ position.title }}
+                    </li>
+                    {% if position.location_addr %}
+                        <li class="detail">
+                            <label>
+                                Location:
+                            </label>
+                            {{ position.location_addr }}
+                        </li>
+                    {% endif %}
+                    {% if position.start_year %}
+                        <li class="detail">
+                            <label>
+                                Start Date:
+                            </label>
+                            {% if position.start_month %}
+                                {{ position.start_month }} {{ position.start_year }}
+                            {% else %}
+                                {{ position.start_year }}
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                    {% if position.end_year %}
+                        <li class="detail">
+                            <label>
+                                End Date:
+                            </label>
+                            {% if position.end_month %}
+                                {{ position.end_month }} {{ position.end_year }}
+                            {% else %}
+                                {{ position.end_year }}
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                    {% if position.comment_set.get.comment %}
+                        <li class="detail">
+                            <label>
+                                Description:
+                            </label>
+                            <div class="comment">
+                                {{ position.comment_set.get.comment }}
+                            </div>
+                        </li>
+                    {% endif %}
+                </ul> 
+            </div>
+            {% endfor %}
+
+        {% else %}
+            <li class="detail position">
+                <p>You currently have no added positions.</p>
+            </li>
+        {% endif %}
+    {% endif %}
+
+     {% if is_paginated %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+                <li>
+                    <a href="?page={{ i }}">
+                        {{ i }}
+                    </a>
+                </li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+   
+{% endblock %}

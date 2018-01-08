@@ -1,0 +1,11 @@
+{% block content %}
+    <ul class="messages-list">
+        {% for message in messages_list %}
+            <li>{{ message.created }} {{ message.user.username }} : 
+                <p>{{ message.text }}</p>
+            </li>
+        {% empty %}
+            <p>No messages to show</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

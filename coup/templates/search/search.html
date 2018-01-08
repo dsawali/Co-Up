@@ -1,0 +1,259 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block extra-head %}
+    <script
+        src="{% static 'javascript/map.js' %}">
+    </script>
+    <link 
+        rel="stylesheet" 
+        href="{% static 'css/tabs.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="tab">
+        <button id="positions" class="tablink active" type="button">
+            Positions
+        </button>
+        <button id="users" class="tablink" type="button">
+            Users
+        </button>
+    </div>
+
+    <div id="positions" class="tab-content">
+        <h2>Positions</h2>    
+        <form name="search-position" action="" method="get" class="form-style">
+            <div class="companyClass form-element">
+                <label for="{{ positions_form.company.id_for_label }}">
+                    Company:    
+                </label>
+                    {{ positions_form.company }}
+            </div>
+            <div class="titleClass form-element">
+                <label for="{{ positions_form.company.id_for_label }}">
+                    Title: 
+                </label>
+                {{ positions_form.title }}
+            </div>
+            <div class="startyearClass form-element">
+                <label for="{{ positions_form.start_year.id_for_label }}">
+                    From Year: 
+                </label>
+                {{ positions_form.start_year }}
+            </div>
+            <div class="startmonthClass form-element">
+                <label for="{{ positions_form.start_month.id_for_label }}">
+                     From Month:
+                </label>
+                {{ positions_form.start_month }}
+            </div>
+            <div class="endyearClass form-element">
+                <label for="{{ positions_form.end_year.id_for_label }}">
+                    To Year: 
+                </label>
+                {{ positions_form.end_year }}
+            </div>
+            <div class="endmonthClass form-element">
+                <label for="{{ positions_form.end_month.id_for_label }}">
+                     To Month:
+                </label>
+                {{ positions_form.end_month }}
+            </div>
+            <div class="locationClass form-element">
+                <label for="{{ positions_form.location_addr.id_for_label }}">
+                    Near:
+                </label>
+                {{ positions_form.location_addr }}
+                {{ positions_form.location_lat }}
+                {{ positions_form.location_lng }}
+                <div id="map"></div>
+            </div>
+            <input type="submit" value="search" />
+        </form>
+    </div>
+
+    <div id="users" class="tab-content">
+        <h2>Users</h2>    
+        <form action="" method="get" class="form-style">
+            <div class="usernameClass">
+                <label for="{{ users_form.username.id_for_label }}">
+                    Username: 
+                </label>
+                {{ users_form.username }}
+            </div>
+            <div class="fullnameClass">
+                <label for="{{ users_form.fullname.id_for_label }}">
+                    Name: 
+                </label>
+                {{ users_form.fullname }}
+            </div>
+            <div class="facultyClass">
+                <label for="{{ users_form.lastname.id_for_label }}">
+                    Faculty: 
+                </label>
+                {{ users_form.faculty }}
+            </div>
+            <div class="programClass">
+                <label for="{{ users_form.lastname.id_for_label }}">
+                    Program: 
+                </label>
+                {{ users_form.program }}
+            </div>
+            <input type="submit" value="search" />
+        </form>
+    </div>
+
+    {% if not object_list.count %}
+        <h2>No results were found.</h2>
+    
+    {% else %}
+        {% if username %}
+            <h2>Users Found</h2>
+            {% for user in object_list %}
+                <div class="description">
+                    <h3 id="username">
+                        <a class="profile-link"
+                             href="{{ user.get_absolute_url }}">
+                            {{ user.username }}
+                        </a>
+                    </h3>
+                    <ul id="search-results" class="description-details">
+                        <li id="fullname" class="detail">
+                            {{ user.first_name }} {{ user.last_name }}
+                        </li>
+                        {% if user.program %}
+                            <li id="program" class="detail">
+                                Studies {{ user.program }}
+                            </li>
+                        {% endif %}
+                        {% if user.faculty %}
+                            <li id="faculty" class="detail">
+                                Faculty of {{ user.faculty }}
+                            </li>
+                        {% endif %}
+                        <li class="detail">
+                            <a href="{% url 'conversations:group-create' %}">
+                                Message {{ user.username }}
+                            </a>
+                        </li>
+                        <li class="detail">
+                            <form action="POST">
+                                <a href="{% url 'user_follow' %}" 
+                                    data-id="{{ user.id }}" 
+                                    data-action="{% if request.user in user.followers.all %}un
+                                                    {% endif %}follow" 
+                                    class="follow button">
+                                    {% if request.user not in user.followers.all %}
+                                        Follow {{ user.username }}
+                                    {% else %}
+                                        Unfollow {{ user.username }}
+                                    {% endif %}
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            {% endfor %}
+        {% else %} 
+            <h2>Positions Found</h2>
+            {% for position in object_list %}
+                <div class="description">
+                    <h3 id="title">
+                        <a class="profile-link" 
+                           href="{{ position.get_absolute_url }}">
+                            {{ position.title }}
+                        </a> 
+                    </h3>
+                    <ul id="search-results" class="description-details">
+                        <label>Company:</label>
+                        <li id="company" class="detail">
+                            <a href=#>
+                                {{ position.company }}
+                            </a>
+                        </li>
+                        {% if position.location_addr %}
+                            <label>Location:</label>
+                            <li id="addr" class="detail">
+                                {{ position.location_addr }}
+                            </li>
+                        {% endif %}
+                        {% for comment in position.comment_set.all %}
+                        {% if comment.comment %}
+                            <label>Description:</label>
+                            <li id="comment" class="detail">
+                                <div class="comment">
+                                    {{ comment.comment }}
+                                </div>
+                            </li>
+                        {% endif %}
+                        <label class="user">User:</label>
+                        <li id="user" class="detail">
+                            <a href="#">
+                                {{ comment.user.username }}
+                            </a>
+                            <a class="profile-link" href="#">
+                                Message
+                            </a>
+                            <a class="profile-link" href="#">
+                                Follow
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if is_paginated %}
+        <ul class="pagination">
+            {% if username %}
+                {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}&username={{ request.GET.username }}&fullname={{ request.GET.fullname }}&faculty={{ request.GET.faculty }}&program={{ request.GET.program }}">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+
+                {% for i in paginator.page_range %}
+                    <li>
+                        <a href="?page={{ i }}&username={{ request.GET.username }}&fullname={{ request.GET.fullname }}&faculty={{ request.GET.faculty }}&program={{ request.GET.program }}">
+                            {{ i }}
+                        </a>
+                    </li>
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}&username={{ request.GET.username }}&fullname={{ request.GET.fullname }}&faculty={{ request.GET.faculty }}&program={{ request.GET.program }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+
+            {% else %}
+                {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}&company={{ request.GET.company }}&title={{ request.GET.title }}&start_year={{ request.GET.start_year }}&start_month={{ request.GET.start_month }}&end_year={{ request.GET.end_year }}&end_month={{ request.GET.end_month }}&location_lat={{ request.GET.location_lat }}&location_lng={{ request.GET.location_lng }}">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+                {% for i in paginator.page_range %}
+                    <li>
+                        <a href="?page={{ i }}&company={{ request.GET.company }}&title={{ request.GET.title }}&start_year={{ request.GET.start_year }}&start_month={{ request.GET.start_month }}&end_year={{ request.GET.end_year }}&end_month={{ request.GET.end_month }}&location_lat={{ request.GET.location_lat }}&location_lng={{ request.GET.location_lng }}">
+                            {{ i }}
+                        </a>
+                    </li>
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}&company={{ request.GET.company }}&title={{ request.GET.title }}&start_year={{ request.GET.start_year }}&start_month={{ request.GET.start_month }}&end_year={{ request.GET.end_year }}&end_month={{ request.GET.end_month }}&location_lat={{ request.GET.location_lat }}&location_lng={{ request.GET.location_lng }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+            {% endif %}
+        </ul>
+        {% endif %}
+    
+    {% endif %}
+{% endblock content %}
+
+{% block javascript %}
+    <script async defer  
+            src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB3Pjx_vFyh3jMkC19LlLpK-5mZlJoXDa8&callback=initMap">
+    </script>
+{% endblock %}
+
