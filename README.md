@@ -1,4 +1,4 @@
-## Project: CO_OP_US
+## Project: CO_UP
 This application aims to bring together students seeking help with pursuing co-op opportunities and students willing to share their co-op experiences.
 
 Students, who have done co-op previously, can list positions held for other students to see.
